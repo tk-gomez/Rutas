@@ -32,8 +32,6 @@ for i in rutas:
             costo=costo + 15
         if(i[n]==3 and i[n+1]==5)or(i[n]==5 and i[n+1]==3):    
             costo=costo + 30
-        if(i[n]==3 and i[n+1]==4)or(i[n]==4 and i[n+1]==3):    
-            costo=costo + 15
         if(i[n]==4 and i[n+1]==5)or(i[n]==5 and i[n+1]==4):    
             costo=costo + 50
         
