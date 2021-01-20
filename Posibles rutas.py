@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jan 19 22:16:38 2021
-
-@author: 52557
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Created on Tue Jan 19 14:08:04 2021
 
 @author: 52557
@@ -61,11 +54,6 @@ while q < total:
     rutValidas.append(totalRutas[z])
     
 print(rutValidas)
-
-
-
-
-
 
 
 
