@@ -13,6 +13,7 @@ rutas= itertools.permutations(ciudades,5)
 
 
 totalRutas=[]
+arreCostos=[]
 for p in rutas:
     costo=0
     n = 0
@@ -38,16 +39,16 @@ for p in rutas:
         if(p[n]==4 and p[n+1]==5)or(p[n]==5 and p[n+1]==4):    
             costo=costo + 50
         
-    totalRutas.append([p,costo])        
+    totalRutas.append([p,costo])
+    arreCostos.append([costo])
+#print(arreCostos)
+       
     
-print("\n\t====RUTAS EXISTENTES EN EL UNIVERSO ====")    
+print("\n\t*******RUTAS EXISTENTES EN EL UNIVERSO *******\n")    
 print(totalRutas,len(totalRutas))
 print("\n\t====CANTIDAD TOTAL DE RUTAS ====")
 print(len(totalRutas))
-
-
-
-print("\n\t")
+print("\n")
 
 totalRutas2=[]
 tipos= itertools.permutations('12345',5)
@@ -56,15 +57,15 @@ for i in tipos:
     totalRutas2.append(i)
 
 
-print("\n\t====BUSCAR POSIBLES RUTAS====")
+
+print("\n\n\t====BUSCAR POSIBLES RUTAS====\n")
 inicio = input("Rutaaaaa Inicial: ")
 final = input("Rutaaaaa final: ")
 i= 0
 casillas = []
 
 
-
-while i < 120:
+while (i < len(totalRutas)):
     x = (totalRutas2[i].index(inicio))
     y = (totalRutas2[i].index(final))
     i= i+1
@@ -72,37 +73,43 @@ while i < 120:
         casillas.append(i-1)
 
 
+#CANTIDAD DE validas
 total = len(casillas)
 print("\n\tTOTAL DE RUTAS VALIDAS")
 print(total)
     
 
 rutValidas =[]
+costosRutas =[]
 q= 0
 c = 0
-while q < total:
+while (q < total):
     z = casillas[c]
     c = c+1
     q = q+1
     rutValidas.append(totalRutas[z])
+    costosRutas.append(arreCostos[z])
     
+costosRutas.sort()
+
 print(rutValidas)
 
-costos = []
-minimo = costo
-for i in range(1,len(costo)):
-    if costo[i] < minimo:
-        minimo = costo[i]
-print("\nEl costo Minimo es: ",minimo)
-        
 
-
-mayor = rutValidas[0]
-for i in range(1,len(rutValidas)):
-    if rutValidas[i] > mayor:
-        mayor = rutValidas[i]
-
-print("\nEl costo Maximo es:",mayor)
-
-
-
+minimo = 0
+while (minimo < len(rutValidas)):
+    Ruta = rutValidas[minimo][1]
+    NumMinimo = costosRutas[0]
+    
+    if  NumMinimo[0] == Ruta:
+        print("\nLas rutas con menos costo son: {}".format(rutValidas[minimo]))
+    minimo= minimo+1
+    
+    
+mayor = 0    
+while (mayor < len(rutValidas)):
+    Ruta = rutValidas[mayor][1]
+    NumMayor = costosRutas[total-1]
+    
+    if  NumMayor[0] == Ruta:
+        print("\nLas rutas con mayor costo son: {}".format(rutValidas[mayor]))
+    mayor= mayor+1
