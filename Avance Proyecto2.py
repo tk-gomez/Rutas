@@ -10,9 +10,8 @@ def grafo1(inicio,final):
     rutas= itertools.combinations(ciudades,2)
     print(rutas)
     rutas= itertools.permutations(ciudades,5)
-    
     totalRutas=[]
-    arreCostos=[]
+    
     for p in rutas:
         i=0
         costo=0
@@ -41,8 +40,7 @@ def grafo1(inicio,final):
                     costo=costo + 30
                 if(p[n]==4 and p[n+1]==5)or(p[n]==5 and p[n+1]==4):    
                     costo=costo + 50
-            totalRutas.append([p,costo])
-            arreCostos.append([costo])
+            totalRutas.append([costo,p])
         i=i+1   
     totalRutas.reverse()
     totalRutas.sort()
@@ -52,31 +50,29 @@ def grafo1(inicio,final):
     print("\n\t====CANTIDAD TOTAL DE RUTAS ====")
     print(len(totalRutas))
     
-    costomin=arreCostos [0][0]
-    costomax= arreCostos[len(totalRutas)-1][0]
+    costomin=totalRutas[0][0]
+    print("La ruta con el costo minimo es: ",costomin)
+    costomax=totalRutas[len(totalRutas)-1][0]
+    print("La ruta con mayor costo es: ",costomax)
     
-    rutaMin = totalRutas[0][0]
-    rutaMax = totalRutas[len(totalRutas)-1][0]
-    
-    print(f"La ruta con minimo es: {rutaMin} ",costomin)
-    print(f"La ruta con mayor costo es: {rutaMax} ", costomax)
+
     
 def grafo2(inicio,final):
     ciudades=[1,2,3,4,5]
     rutas= itertools.combinations(ciudades,2)
     print(rutas)
     rutas= itertools.permutations(ciudades,5)
-    
     totalRutas=[]
-    arreCostos=[]
+    
     for p in rutas:
         i=0
         costo=0
         print(p)
         x =p.index(inicio)
         y =p.index(final)
-        if(x==0 and y==1):
+        if(x==0 and y==4):
             for n in range(len(p)-1):
+                
                 if(p[n]==1 and p[n+1]==2)or(p[n]==2 and p[n+1]==1):    
                     costo=costo + 10
                 if(p[n]==1 and p[n+1]==4)or(p[n]==4 and p[n+1]==1):    
@@ -91,8 +87,7 @@ def grafo2(inicio,final):
                     costo=costo + 15
                 if(p[n]==4 and p[n+1]==5)or(p[n]==5 and p[n+1]==4):    
                     costo=costo + 50
-            totalRutas.append([p,costo])
-            arreCostos.append([costo])
+            totalRutas.append([costo,p])
         i=i+1   
     totalRutas.reverse()
     totalRutas.sort()
@@ -102,14 +97,10 @@ def grafo2(inicio,final):
     print("\n\t====CANTIDAD TOTAL DE RUTAS ====")
     print(len(totalRutas))
     
-    costomin=arreCostos [0][0]
-    costomax= arreCostos[len(totalRutas)-1][0]
-    
-    rutaMin = totalRutas[0][0]
-    rutaMax = totalRutas[len(totalRutas)-1][0]
-    
-    print(f"La ruta con minimo es: {rutaMin} ",costomin)
-    print(f"La ruta con mayor costo es: {rutaMax} ", costomax)
+    costomin=totalRutas[0][0]
+    print("La ruta con el costo minimo es: ",costomin)
+    costomax=totalRutas[len(totalRutas)-1][0]
+    print("La ruta con mayor costo es: ",costomax)
 
 def desplegarMenu(texto,max):
     while (True):
