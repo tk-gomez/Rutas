@@ -10,106 +10,57 @@ ciudades=[1,2,3,4,5]
 rutas= itertools.combinations(ciudades,2)
 print(rutas)
 rutas= itertools.permutations(ciudades,5)
+print("\n\t====BUSCAR POSIBLES RUTAS====")
+inicio = int(input("Rutaaaaa Inicial: "))
+final = int(input("Rutaaaaa final: "))
 
 
 totalRutas=[]
 arreCostos=[]
 for p in rutas:
+    i=0
     costo=0
-    n = 0
-    for n in range(len(p)-1):
-        if(p[n]==1 and p[n+1]==2)or(p[n]==2 and p[n+1]==1):    
-            costo=costo + 10
-        if(p[n]==1 and p[n+1]==3)or(p[n]==3 and p[n+1]==1):    
-            costo=costo + 55
-        if(p[n]==1 and p[n+1]==4)or(p[n]==4 and p[n+1]==1):    
-            costo=costo + 25
-        if(p[n]==1 and p[n+1]==5)or(p[n]==5 and p[n+1]==1):    
-            costo=costo + 45
-        if(p[n]==2 and p[n+1]==3)or(p[n]==3 and p[n+1]==2):    
-            costo=costo + 20
-        if(p[n]==2 and p[n+1]==4)or(p[n]==4 and p[n+1]==2):    
-            costo=costo + 25
-        if(p[n]==2 and p[n+1]==5)or(p[n]==5 and p[n+1]==2):    
-            costo=costo + 40
-        if(p[n]==3 and p[n+1]==4)or(p[n]==4 and p[n+1]==3):    
-            costo=costo + 15
-        if(p[n]==3 and p[n+1]==5)or(p[n]==5 and p[n+1]==3):    
-            costo=costo + 30
-        if(p[n]==4 and p[n+1]==5)or(p[n]==5 and p[n+1]==4):    
-            costo=costo + 50
-        
-    totalRutas.append([p,costo])
-    arreCostos.append([costo])
-#print(arreCostos)
-       
-    
-print("\n\t*******RUTAS EXISTENTES EN EL UNIVERSO *******\n")    
+    print(p)
+    x =p.index(inicio)
+    y =p.index(final)
+    if(x==0 and y==4):
+        for n in range(len(p)-1):
+            if(p[n]==1 and p[n+1]==2)or(p[n]==2 and p[n+1]==1):    
+                costo=costo + 10
+            if(p[n]==1 and p[n+1]==3)or(p[n]==3 and p[n+1]==1):    
+                costo=costo + 55
+            if(p[n]==1 and p[n+1]==4)or(p[n]==4 and p[n+1]==1):    
+                costo=costo + 25
+            if(p[n]==1 and p[n+1]==5)or(p[n]==5 and p[n+1]==1):    
+                costo=costo + 45
+            if(p[n]==2 and p[n+1]==3)or(p[n]==3 and p[n+1]==2):    
+                costo=costo + 20
+            if(p[n]==2 and p[n+1]==4)or(p[n]==4 and p[n+1]==2):    
+                costo=costo + 25
+            if(p[n]==2 and p[n+1]==5)or(p[n]==5 and p[n+1]==2):    
+                costo=costo + 40
+            if(p[n]==3 and p[n+1]==4)or(p[n]==4 and p[n+1]==3):    
+                costo=costo + 15
+            if(p[n]==3 and p[n+1]==5)or(p[n]==5 and p[n+1]==3):    
+                costo=costo + 30
+            if(p[n]==4 and p[n+1]==5)or(p[n]==5 and p[n+1]==4):    
+                costo=costo + 50
+        totalRutas.append([p,costo])
+        arreCostos.append([costo])
+    i=i+1   
+totalRutas.reverse()
+totalRutas.sort()
+
+print(f"\n\t====RUTAS QUE VAN DESDE EL PUNTO {inicio} AL PUNTO {final} ====")    
 print(totalRutas,len(totalRutas))
 print("\n\t====CANTIDAD TOTAL DE RUTAS ====")
 print(len(totalRutas))
-print("\n")
 
-totalRutas2=[]
-tipos= itertools.permutations('12345',5)
-for i in tipos:
-    print(i)
-    totalRutas2.append(i)
+costomin=arreCostos [0][0]
+costomax= arreCostos[len(totalRutas)-1][0]
 
+rutaMin = totalRutas[0][0]
+rutaMax = totalRutas[len(totalRutas)-1][0]
 
-
-print("\n\n\t====BUSCAR POSIBLES RUTAS====\n")
-inicio = input("Rutaaaaa Inicial: ")
-final = input("Rutaaaaa final: ")
-i= 0
-casillas = []
-
-
-while (i < len(totalRutas)):
-    x = (totalRutas2[i].index(inicio))
-    y = (totalRutas2[i].index(final))
-    i= i+1
-    if(x==0 and y==4 or x==4 and y==0):
-        casillas.append(i-1)
-
-
-#CANTIDAD DE validas
-total = len(casillas)
-print("\n\tTOTAL DE RUTAS VALIDAS")
-print(total)
-    
-
-rutValidas =[]
-costosRutas =[]
-q= 0
-c = 0
-while (q < total):
-    z = casillas[c]
-    c = c+1
-    q = q+1
-    rutValidas.append(totalRutas[z])
-    costosRutas.append(arreCostos[z])
-    
-costosRutas.sort()
-
-print(rutValidas)
-
-
-minimo = 0
-while (minimo < len(rutValidas)):
-    Ruta = rutValidas[minimo][1]
-    NumMinimo = costosRutas[0]
-    
-    if  NumMinimo[0] == Ruta:
-        print("\nLas rutas con menos costo son: {}".format(rutValidas[minimo]))
-    minimo= minimo+1
-    
-    
-mayor = 0    
-while (mayor < len(rutValidas)):
-    Ruta = rutValidas[mayor][1]
-    NumMayor = costosRutas[total-1]
-    
-    if  NumMayor[0] == Ruta:
-        print("\nLas rutas con mayor costo son: {}".format(rutValidas[mayor]))
-    mayor= mayor+1
+print(f"La ruta con minimo es: {rutaMin} ",costomin)
+print(f"La ruta con mayor costo es: {rutaMax} ", costomax)
